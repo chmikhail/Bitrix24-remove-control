@@ -9,8 +9,8 @@ else
    if (!$ScriptPath){ $ScriptPath = "." } 
 }
 #Устанавливаем переменные приватных ключей
-$sshkeynopass = ".\тут указать пути для ващих приватных ключей";
-$sshkeyyespass = ".\тут указать пути для ващих приватных ключей;";
+$sshkeynopass = ".\тут указать пути для ваших приватных ключей";
+$sshkeyyespass = ".\тут указать пути для ваших  приватных ключей;";
 #устанавливаем переменные для меню
 $1menu=Write-Host '1. Указать Пользователя и HOST' -ForegroundColor Green
 $2menu=Write-Host '2. Установить SSH key на сервер(надо знать пароль ROOT)' -ForegroundColor Green

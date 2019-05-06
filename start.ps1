@@ -69,13 +69,6 @@ Function ShowMessage($title, $content, $type)
     [void][Windows.Forms.Messagebox]::show($content, $title, $type);
 }
 
-#Перенес в первую строку
-#Function Get-ScriptDirectory
-#{
-#    $Invocation = (Get-Variable MyInvocation -Scope 1).Value;
-#    Split-Path $Invocation.MyCommand.Path;
-#}
-
 $pubKeyFile = Select-File
 if (! $pubKeyFile) {
     ShowMessage 'Нужно выбрать файл' 'Пожалуйста выберете файл публичного ключа для загрузки на HOST и нажмите' 'OK';

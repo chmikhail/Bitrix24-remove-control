@@ -9,8 +9,8 @@ else
    if (!$ScriptPath){ $ScriptPath = "." } 
 }
 #Устанавливаем переменные приватных ключей
-$sshkeynopass = ".\тут указать пути для ваших приватных ключей";
-$sshkeyyespass = ".\тут указать пути для ваших  приватных ключей;";
+$sshkeynopass = ".\sshkey\private\support1.key";
+$sshkeyyespass = ".\sshkey\private\itexto.key";
 #устанавливаем переменные для меню
 $1menu=Write-Host '1. Указать Пользователя и HOST' -ForegroundColor Green
 $2menu=Write-Host '2. Установить SSH key на сервер(надо знать пароль ROOT)' -ForegroundColor Green
@@ -69,6 +69,13 @@ Function ShowMessage($title, $content, $type)
     [void][Windows.Forms.Messagebox]::show($content, $title, $type);
 }
 
+#Перенес в первую строку
+#Function Get-ScriptDirectory
+#{
+#    $Invocation = (Get-Variable MyInvocation -Scope 1).Value;
+#    Split-Path $Invocation.MyCommand.Path;
+#}
+
 $pubKeyFile = Select-File
 if (! $pubKeyFile) {
     ShowMessage 'Нужно выбрать файл' 'Пожалуйста выберете файл публичного ключа для загрузки на HOST и нажмите' 'OK';
@@ -104,7 +111,7 @@ ssh $hostname0 -i $sshkeynopass 'yum -y install mc nano net-tools cifs-utils hto
 }
 #Пункт меню 4
 4{
-ssh $hostname0 -i $sshkeynopass 'systemctl -t service -a | grep nginx.service ; systemctl -t service -a | grep mysqld.service'
+ssh $hostname0 -i $sshkeynopass 'systemctl -t service -a | grep nginx.service ; systemctl -t service -a | grep mysqld.service; systemctl -t service -a | grep httpd.service '
 }
 #Пункт меню 5
 5{

@@ -16,10 +16,11 @@ $1menu=Write-Host '1. Указать Пользователя и HOST' -Foregrou
 $2menu=Write-Host '2. Установить SSH key на сервер(надо знать пароль ROOT)' -ForegroundColor Green
 $3menu=Write-Host '3. Установить дополнительный софт' -ForegroundColor Green
 $4menu=Write-Host '4. Проверить сервисы Веб-окружения' -ForegroundColor Green
-$5menu=Write-Host '5. Использование ОЗУ' -ForegroundColor Green
-$6menu=Write-Host '6. Свободное место на дисках' -ForegroundColor Green
-$7menu=Write-Host '7. Перезагрузить удаленный host' -ForegroundColor Green
-$8menu=Write-Host '8. Заменить SSH ключ support1 на itexto (Не работает)' -ForegroundColor Red
+$5menu=Write-Host '5. Проверить Backup' -ForegroundColor Red
+$6menu=Write-Host '6. Использование ОЗУ' -ForegroundColor Green
+$7menu=Write-Host '7. Свободное место на дисках' -ForegroundColor Green
+$8menu=Write-Host '8. Перезагрузить удаленный host' -ForegroundColor Green
+$9menu=Write-Host '9. Заменить SSH ключ support1 на itexto (Не работает)' -ForegroundColor Red
 $0menu=Write-Host '0. Выход' -ForegroundColor Green
 
 #устанавливаем переменные для меню
@@ -43,6 +44,7 @@ $5menu
 $6menu
 $7menu
 $8menu
+$9menu
 $0menu
 
 Switch($selected_menu_item){
@@ -115,18 +117,22 @@ ssh $hostname0 -i $sshkeynopass 'systemctl -t service -a | grep nginx.service ; 
 }
 #Пункт меню 5
 5{
-ssh $hostname0 -i $sshkeynopass free -m
+ssh $hostname0 -i $sshkeynopass ls -a /home/bitrix/www/bitrix/backup
 }
 #Пункт меню 6
 6{
-ssh $hostname0 -i $sshkeynopass df -h
+ssh $hostname0 -i $sshkeynopass free -m
 }
 #Пункт меню 7
 7{
+ssh $hostname0 -i $sshkeynopass df -h
+}
+#Пункт меню 8
+8{
 ssh $hostname0 -i $sshkeynopass reboot
 }
-#Тут будет пункт 8
-8{
+#Тут будет пункт 9
+9{
 ssh $hostname0 -i $sshkeynopass reboot
 }
 #Выход из срипта
